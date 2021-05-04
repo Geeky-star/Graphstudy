@@ -1,3 +1,5 @@
+paths = []
+
 from collections import defaultdict
 
 class Graph:
@@ -5,7 +7,6 @@ class Graph:
     def __init__(self,vertices):
         self.v = vertices
         self.graph = defaultdict(list)
-        self.paths = []
         
     def addEdge(self,u,v):
         self.graph[u].append(v)
@@ -15,8 +16,8 @@ class Graph:
         visited[src] = True
         
         if src == dest:
-            self.paths.append(path)
-            print("paths is  - ", self.paths)
+            paths.append(path)
+            print("paths is  - ", paths)
             print("yes path exists")
             return True;
         
@@ -42,11 +43,13 @@ g.addEdge(0, 1)
 g.addEdge(0, 2)
 g.addEdge(1, 2)
 g.addEdge(2, 0)
-g.addEdge(2, 3)
+g.addEdge(2,3)
 g.addEdge(3, 3)
 
-
-if g.transitiveClousure(0,3)==True:
+g.transitiveClousure(1,3)
     
-    print("yes, path exists")
+if paths ==[]:
+    print("no, path doesn't exists")
     
+else:
+    print("yes, path exists" , paths)
