@@ -1,3 +1,5 @@
+#Using dfs
+
 paths = []
 
 from collections import defaultdict
@@ -53,3 +55,54 @@ if paths ==[]:
     
 else:
     print("yes, path exists" , paths)
+
+    
+    
+#Method 2 - Using bfs
+
+
+from collections import defaultdict
+from collections import deque
+
+class Graph:
+    
+    def __init__(self,v):
+        self.v = v 
+        self.graph = defaultdict(list)
+        
+    def addEdge(self,u,v):
+        self.graph[u].append(v)
+        
+    def bfs(self,src,dest):
+        
+        q = deque()
+        q.append(src)
+        visited = [False]*self.v
+        while len(q)>0:
+                
+            node = q.pop()
+            visited[node]=True 
+            if node==dest:
+                return True
+                
+            for nbr in self.graph[node]:
+                if visited[nbr]==False:
+                    q.append(nbr)
+                    
+            
+        return False
+        
+g = Graph(4)
+g.addEdge(0, 1)
+g.addEdge(0, 2)
+g.addEdge(1, 2)
+g.addEdge(2, 0)
+g.addEdge(2, 3)
+g.addEdge(3, 3)
+u = 1 
+v = 3 
+if g.bfs(1,3)==True:
+    print("path found")
+else:
+    print("no path found")
+    
