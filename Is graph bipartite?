@@ -1,0 +1,30 @@
+def isBipartite(self, graph: List[List[int]]) -> bool:
+        
+        def dfs(src,visited):
+           
+            visited[src] = True
+            for nbr in graph[src]:
+                
+                if visited[nbr]==False and color[nbr]==-1:
+                            color[nbr] = 1-color[src]
+                            if not dfs(nbr,visited):
+                                return False
+                    
+                elif visited[nbr]==True:
+                        if color[nbr]==color[src]:
+                            return False
+                    
+            return True
+        
+        
+        n=len(graph)
+        visited = [False]*n 
+        color = [-1] * len(graph)
+        
+        for i in range(n):
+            if color[i]==-1 and visited[i]==False:
+                color[i] = 0
+                if dfs(i,visited)==False:
+                    return False
+                
+        return True
